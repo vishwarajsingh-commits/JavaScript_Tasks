@@ -1,0 +1,32 @@
+*{
+    margin: 10px 50px;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+body{
+    background-color: black;
+    margin: 5px;padding: 10px;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 50pc;
+}
+
+h1{
+color: yellow;
+font-size: 70px;
+}
+button{
+    font-size: 20px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 50px;
+    background-color: black;
+    border:1px solid white;    
+}
+
+button:hover{
+    background-color: white;
+    color: black;
+}
