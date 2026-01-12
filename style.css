@@ -8,40 +8,45 @@ body,html{
     width: 100%;
     height: 100%;
     background-color: black;
+    
+    
+
+}
+
+.piano-key{
+    list-style: none;
     display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 10px;
-    
-}
-
-.card{
-    background-color: white;
-    width: 300px;
-    /* height: 400px; */
-    text-align: center;
+    /* /* align-items: center; */
+    justify-content: space-between; 
     margin: 10px;
-    padding: 15px;
-    border-radius: 10px;
-    
-}
-.card img{
-    width: 90%;
-    object-fit: cover;
-    height: 250px;
-    border-radius: 100%;
+    gap: 5px;
 }
 
-.card h1{
-    margin: 5px;
-    color: red;
-    font-size: 40px;
+.piano-key .keys{
+    cursor: pointer;
+    user-select: none;
+    position: relative;
 }
-.card h3{
-    margin: 5px;
-    font-size: 20px;
-    white-space: nowrap;
-    margin-bottom: 10px;
+.piano-key .keys-black{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 2;
+    height: 150px;
+    width: 58px;
+    background-color: black;
+    color: #eee;
+    margin: 0 -22px 0 -22px;
+    border-radius:0 0 8px 8px;
 }
 
-
+.piano-key .keys-white{
+    justify-content: center;
+    display: flex;
+    align-items: flex-end;
+    height: 230px;
+    width: 90px;
+    border-radius: 8px;
+    border: 1px solid white;
+    background-color: white;
+}
