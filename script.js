@@ -1,66 +1,64 @@
- //example-1
+/* 
+//Scenario - 1
 
-function delay(time,cb){
-  setTimeout(function (){
-    cb();
-  },time);
+async function getWeather(city,){
+    try{
+        let apikey = `e99337cb27a296f558920df5e332e709`;    
+       let raw = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`);
+       
+       if(!raw.ok){
+        throw new Error("city not found");
+       }
+       let data = await raw.json();
+       if(data.main.temp<-15){
+        console.warn(`cold - ${data.main.temp}°C`)
+       }
+       else if(data.main.temp>35){
+        console.warn(`hot - ${data.main.temp}°C`)
+       }
+       else{
+        console.log(`normal - ${data.main.temp}°C`)
+       }
+    }
+    catch(err){
+        console.log(err.message)
+    }
 }
 
-delay(3000,function (){
-  console.log("Callback executed");
-});
+getWeather("chile");
+ 
 
-//example-2
-
-function getUser(username,cb){
-  console.log("getting user details...")
-  setTimeout(()=>{
-    cb({id:1,username:"vishwa"});
-  },4000);
-}
-
-function getUserPost(id,cb){
-  console.log("getting user post...")
-  setTimeout(()=>{
-    cb(["p1","hello","bye"]);
-  },6000);
-}
-
-getUser("vishwa",function (data){  
-  getUserPost(data.id,function (allpost){
-    console.log(data.username,allpost);
-  });
-}); 
-
-//Example-3
+//Scenario - 2
 
 
-function loginUser(username,cb){
-  console.log("getting user details...");
-  setTimeout(() => {
-    cb({id:2004,username:"viswha"});
-  }, 7000);
-}
+const emails = [
+  "john@example.com",
+  "sarah@example.com",
+  "alex@example.com",
+  "vishwaraj@example.com"
+];
 
-function fetchPermissions(id,cb){
-  console.log("fetching permissions...");
-  setTimeout(() => {
-    cb(["read","write"]);
-  }, 9000);
-}
+function sendEmail(email){
+    return new Promise((res,rej)=>{
+        let time = Math.floor(Math.random()*5);
 
-function loadDashboard(permissions,cb){
-  console.log("loading dashboard...");
-  setTimeout(() => {
-    cb();
-  }, 9000);
-}
-
-loginUser("vishwa",function (user){
-  fetchPermissions(user.id,function (permissions){
-    loadDashboard(permissions,function (){
-      console.log("dashboard loaded✅")
+        setTimeout(() => {
+            let prob = Math.floor(Math.random()*10);
+            if(prob<=5) res("Email successfully sent");
+            else rej("Email not sent");
+        }, time*1000);
     });
-  });
-});
+}
 
+async function sendEmails(emails){
+    let all = emails.map(function (email){
+        return sendEmail(email)
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err));
+    });
+    let ans =await Promise.all(all);
+    console.log(ans);
+}
+
+sendEmails(emails);
+*/
